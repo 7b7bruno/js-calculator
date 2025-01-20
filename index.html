@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <style>
+        .error {
+            color: red;
+        }
+        .result {
+            color: green;
+        }
+    </style>
 </head>
 <body>
     <h1>JS Calculator</h1>
@@ -23,15 +31,19 @@
 
         submit.addEventListener('click', function() {
             out.innerHTML = '';
+            out.classList.remove('error');
+            out.classList.remove('result');
             let validation = validate();
             if(!validation) {
                 calculate();
                 out.innerHTML = result;
+                out.classList.add('result');
             }
             else {
                 console.log('errors');
                 errorStr = validation.join('<br/>');
                 out.innerHTML = errorStr;
+                out.classList.add('error');
             }
         });
 
