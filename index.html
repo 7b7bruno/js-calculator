@@ -14,8 +14,40 @@
 </body>
     <script>
         const submit = document.getElementById('submit');
+        const num1 = document.getElementById('num1');
+        const num2 = document.getElementById('num2');
+        const op = document.getElementById('op');
         submit.addEventListener('click', function() {
             console.log('Button pressed!');
+            calculate();
         });
+
+        function calculate() {
+            let val1 = Number.parseInt(num1.value);
+            let val2 = Number.parseInt(num2.value);
+            let opVal = op.value;
+
+            let result;
+
+            switch(opVal) {
+                case '+':
+                    result = val1 + val2;
+                    break;
+                case '-': 
+                    result = val1 - val2;
+                    break;
+                case '*':
+                    result = val1 * val2;
+                    break;
+                case '/': 
+                    result = val1 / val2;
+                    break;
+                default:
+                    console.log('Invalid operator!');
+                    break;
+            }
+
+            console.log(result);
+        }
     </script>
 </html>
