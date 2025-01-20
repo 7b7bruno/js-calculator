@@ -11,22 +11,34 @@
     <input type="text" name="op" id="op" placeholder="Enter operator">
     <input type="number" name="num2" id="num2" placeholder="Enter 2nd number">
     <input type="button" value="Calculate" id="submit">
+    <p id="out"></p>
 </body>
     <script>
         const submit = document.getElementById('submit');
         const num1 = document.getElementById('num1');
         const num2 = document.getElementById('num2');
         const op = document.getElementById('op');
+        const out = document.getElementById('out');
+        let result;
+
         submit.addEventListener('click', function() {
-            calculate();
+            out.innerHTML = '';
+            let validation = validateNumbers();
+            if(!validation) {
+                calculate();
+                out.innerHTML = result;
+            }
+            else {
+                console.log('errors');
+                errorStr = validation.join('<br/>');
+                out.innerHTML = errorStr;
+            }
         });
 
         function calculate() {
             let val1 = Number.parseFloat(num1.value);
             let val2 = Number.parseFloat(num2.value);
             let opVal = op.value;
-
-            let result;
 
             switch(opVal) {
                 case '+':
@@ -52,10 +64,10 @@
         function validateNumbers() {
             let errors = [];
 
-            if(num1.value == null) {
+            if(num1.value == '') {
                 errors.push('The 1st number is required');
             }
-            if(num2.value == null) {
+            if(num2.value == '') {
                 errors.push('The 2nd number is required');
             }
 
