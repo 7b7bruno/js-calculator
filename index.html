@@ -22,8 +22,8 @@
         });
 
         function calculate() {
-            let val1 = Number.parseInt(num1.value);
-            let val2 = Number.parseInt(num2.value);
+            let val1 = Number.parseFloat(num1.value);
+            let val2 = Number.parseFloat(num2.value);
             let opVal = op.value;
 
             let result;
@@ -47,6 +47,21 @@
             }
 
             console.log(result);
+        }
+
+        function validateNumbers() {
+            let errors = [];
+
+            if(num1.value == null) {
+                errors.push('The 1st number is required');
+            }
+            if(num2.value == null) {
+                errors.push('The 2nd number is required');
+            }
+
+            if(errors.length == 0) return false;
+
+            return errors;
         }
     </script>
 </html>
